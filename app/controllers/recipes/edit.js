@@ -7,11 +7,14 @@ export default Ember.Controller.extend({
   actions: {
     saveRecipe: function(){
       var model = this.get('model');
+      var _this = this;
       Ember.$.ajax({
         url: "https://api.parse.com/1/classes/Recipes/" + this.model.id,
         type: "PUT",
         data: JSON.stringify(model),
         contentType: 'application/json'
+      }).done(function(){
+        _this.transitionToRoute('recipes.index');
       });
     },
     delete: function(){

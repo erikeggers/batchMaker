@@ -3,50 +3,88 @@
   <div>
     <span class="recipe-title">RECIPE INFO</span>
   </div>
-<div>
-  {{input class="new-recipe-image" placeholder="Enter Image URL" value=model.image}}
   <div>
-    {{input class="new-recipe-name" placeholder="Recipe Name" value=model.name}}
+    <div>
+      <div>
+        <span>Enter Image Url</span>
+      </div>
+      {{input class="new-recipe-image" placeholder="Enter Image URL" value=model.image}}
+    </div>
+    <div>
+      <div>
+        <span>Recipe Name</span>
+      </div>
+      {{input class="new-recipe-name" placeholder="Recipe Name" value=model.name}}
+    </div>
+    <div>
+      <div>
+        <span>Author Name</span>
+      </div>
+      {{input class="new-author" placeholder="Author Name" value=model.author}}
+    </div>
+    <div>
+      <div>
+        <span>Type of Recipe</span>
+      </div>
+      {{view "select" content=recipeType value=model.type prompt="Please select type of recipe"}}
+    </div>
+    <div>
+      <div>
+        <span>Prep Time</span>
+      </div>
+      {{input class="prep-time" placeholder="Prep Time" value=model.prepTime}}
+    </div>
+    <div>
+      <div>
+        <span>Cook Time</span>
+      </div>
+      {{input class="cook-time" placeholder="Cook Time" value=model.cookTime}}
+    </div>
+    <div>
+      <div>
+        <span>Cook Temp</span>
+      </div>
+      {{input class="cook-temp" placeholder="Cook Temp" value=model.cookTemp}}
+    </div>
+    <div>
+      <div>
+        <span>Amount</span>
+      </div>
+      {{input class="yield-number" placeholder="Amount" value=model.yieldNumber}}
+    </div>
+    <div>
+      <div>
+        <span>Yield Name</span>
+      </div>
+      {{input class="yield-name" placeholder="cookies, loaves, etc" value=model.yieldName}}
+    </div>
   </div>
-  <div>
-    {{input class="new-author" placeholder="Author Name" value=model.author}}
-  </div>
-  <div>
-    {{view "select" content=recipeType value=model.type prompt="Please select type of recipe"}}
-  </div>
-  <div>
-    {{input class="prep-time" placeholder="Prep Time" value=model.prepTime}}
-  </div>
-  <div>
-    {{input class="cook-time" placeholder="Cook Time" value=model.cookTime}}
-  </div>
-  <div>
-    {{input class="cook-temp" placeholder="Cook Temp" value=model.cookTemp}}
-  </div>
-  <div>
-    {{input class="yield-number" placeholder="Amount" value=model.yieldNumber}}
-  </div>
-  <div>
-    {{input class="yield-name" placeholder="cookies, loaves, etc" value=model.yieldName}}
-  </div>
-</div>
 </div>
 
 <div class="column2">
-<div>
-  <span class="recipe-title">STEPS</span>
-</div>
-  {{!iterate over the steps on the controller, setting recipes.step as the controller for each}}
-  {{#each step in model.steps itemController="recipes.step"}}
-  {{!iterate over the ingredients on the step controller's model}}
+  <div>
+    <span class="recipe-title">STEPS</span>
+  </div>
+    {{!iterate over the steps on the controller, setting recipes.step as the controller for each}}
+    {{#each step in model.steps itemController="recipes.step"}}
+    {{!iterate over the ingredients on the step controller's model}}
     {{#each ingredient in step.model.ingredients}}
 
     <div>
+      <div>
+        <span>Amount</span>
+      </div>
       {{input class="ingredient-amount" placeholder="Amount" value=ingredient.amount}}
       <div>
+        <div>
+          <span>Unit</span>
+        </div>
         {{view "select" class="ingredient-unit" content=ingredientsUnit value=ingredient.unit prompt="Please select unit of measurement"}}
       </div>
       <div>
+        <div>
+          <span>Ingredient</span>
+        </div>
         {{input class="ingredients-name" placeholder="Ingredient" value=ingredient.name}}
         <button class="add-ing-button" {{action "addIngredient"}}> + </button>
       </div>
